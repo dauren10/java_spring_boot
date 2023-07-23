@@ -9,6 +9,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
+import jakarta.persistence.Transient;
 @Entity
 @Table
 public class Student {
@@ -26,6 +27,7 @@ public class Student {
     private String name;
     private String email;
     private LocalDate dob;
+    @Transient
     private Integer age;
     
     
@@ -33,8 +35,8 @@ public class Student {
     public Student() {
     }
     
-    public Student(Long id, String name, String email, LocalDate dob,Integer age ) {
-        this.id = id;
+    public Student( String name, String email, LocalDate dob,Integer age ) {
+       
         this.name = name;
         this.age = age;
         this.dob = dob;
