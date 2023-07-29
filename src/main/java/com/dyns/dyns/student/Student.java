@@ -1,6 +1,7 @@
 package com.dyns.dyns.student;
 
 import java.time.LocalDate;
+import java.time.Period;
 import java.util.Objects;
 
 import jakarta.persistence.Entity;
@@ -27,20 +28,28 @@ public class Student {
     private String name;
     private String email;
     private LocalDate dob;
-    @Transient
     private Integer age;
     
-    
-
-    public Student() {
+     public Student() {
     }
-    
-    public Student( String name, String email, LocalDate dob,Integer age ) {
-       
+  
+
+
+    public Student(Long id, String name, String email, LocalDate dob, Integer age) {
+        this.id = id;
         this.name = name;
-        this.age = age;
-        this.dob = dob;
         this.email = email;
+        this.dob = dob;
+    }
+
+   
+    
+    public Student(String name, String email, LocalDate dob ) {
+      
+        this.name = name;
+      
+        this.email = email;
+        this.dob = dob;
     }
 
     
@@ -62,7 +71,7 @@ public class Student {
     }
 
     public Integer getAge() {
-        return this.age;
+        return Period.between(this.dob, LocalDate.now()).getYears();
     }
 
     public void setAge(Integer age) {
